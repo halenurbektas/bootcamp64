@@ -1,27 +1,65 @@
-# bootcamp64
-Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
-Sprint 1
-*Sprint Notları:* Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir. Platformda kullanıcılar, adım adım çözüm girdikleri problemlerle puan kazanırken, yapay zekâ destekli sistem tarafından çözüm doğruluğu, açıklık ve verimliliğe göre değerlendirileceklerdir.
-Ayrıca her kullanıcıya özel eksik konular belirlenerek kişiselleştirilmiş eğitim içerikleri (video dersler, rehber çözümler) sunulacak ve sürekli gelişimi destekleyen bir yapı kurulacaktır. Günlük bulmacalar, meydan okumalar, rozet sistemi ve seviye atlama gibi oyunlaştırma öğeleri ile kullanıcı bağlılığı artırılacaktır.
-Proje; matematiksel düşünme becerilerini geliştirmek, öğrencileri ezberden uzaklaştırmak ve Türkiye’deki matematik okuryazarlığı problemini çözmeye katkı sağlamak amacıyla tasarlanmıştır. Eğitimle teknolojiyi birleştiren bu yenilikçi platform, matematiği hem eğlenceli hem de etkili şekilde öğrenilebilir kılmayı amaçlamaktadır.
+🚀 Bootcamp64 - Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
+📝 Sprint Notları
+Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
 
-*Tahmin edilen tamamlanacak puan:* 50
-*Tahmin mantığı:* 200 puan üzerinden 3 sprint + ürün teslimine kadar olan süre dörde bölünmüştür. 
+Platformda kullanıcılar:
 
-*Daily Scrum:* Daily scrum toplantılarının sesli olarak slack üzerinden yapılmasına ancak gün içinde daha hızlı iletişim kurabilmek için whatsapp grubu üzerinden gerekli yazışmalar için kullanılmasına karar verildi. 
-*Sprint Board Uptades:* Scrum Master - Halenur Bektaş 
-Product Owner - Eda Erer 
-Developers- Nermin Tekgöz, Gökdeniz Kuruca, Ahmet Rıfat Karademir
-*Screenshot:* Henüz yok.
-*Sprint Review:* Bu sprintte, rekabetçi ve eğitsel matematik platformumuzun temel özellikleri planlandı ve ürün vizyonu netleştirildi. Kullanıcıların matematik problemlerini adım adım çözerek puan kazanacakları, çözümlerinin yapay zekâ destekli sistemle doğruluk, açıklık ve verimlilik açısından değerlendirileceği yapı tasarlandı. Kişiselleştirilmiş eğitim içerikleri ve oyunlaştırma unsurları (rozetler, seviye sistemi, günlük meydan okumalar) ile kullanıcı bağlılığını artıracak sistemin altyapısı oluşturulmaya başlandı.
-Daily scrum belirlendi; günlük scrum toplantılarının Slack üzerinden sesli yapılmasına, hızlı iletişim için WhatsApp grubunun destekleyici kanal olarak kullanılmasına karar verildi. Rol dağılımı tamamlandı ve ürün geliştirme süreci planlandı. Sprint sonunda puanlama tahmini 50 olarak belirlendi.
+Adım adım çözüm girdikleri problemlerle puan kazanacak,
 
-*Sprint Retrospective:* Bu sprintte ekip olarak verimli bir başlangıç yaptık. Roller net belirlendi ve iletişim kanalları başarıyla organize edildi. Slack üzerinden yapılan sesli günlük toplantılar süreci disipline ederken, WhatsApp grubu hızlı iletişimi destekledi. Olumlu yönler:
+Yapay zekâ destekli sistem tarafından doğruluk, açıklık ve verimlilik açısından değerlendirilecektir.
+
+Ayrıca:
+
+Her kullanıcıya özel eksik konular belirlenerek kişiselleştirilmiş eğitim içerikleri (video dersler, rehber çözümler) sunulacaktır.
+
+Günlük bulmacalar, meydan okumalar, rozet sistemi ve seviye atlama gibi oyunlaştırma öğeleri ile kullanıcı bağlılığı artırılacaktır.
+
+Bu yenilikçi platform, Türkiye’deki matematik okuryazarlığı problemini çözmeye katkı sağlamak, matematiği eğlenceli ve etkili bir şekilde öğrenilebilir kılmak amacıyla tasarlanmıştır.
+
+📊 Tahmin Edilen Tamamlanacak Puan: 50
+Tahmin mantığı: 200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde 4 parçaya bölünmüştür.
+
+🤝 Daily Scrum
+Günlük scrum toplantılarının Slack üzerinden sesli yapılmasına,
+
+Gün içindeki hızlı iletişimler için WhatsApp grubu kullanılmasına karar verilmiştir.
+
+🛠 Sprint Board Updates
+Scrum Master: Halenur Bektaş
+
+Product Owner: Eda Erer
+
+Developers: Nermin Tekgöz, Gökdeniz Kuruca, Ahmet Rıfat Karademir
+
+Screenshot: Henüz yok.
+
+🔍 Sprint Review
+Bu sprintte:
+
+Platformun temel özellikleri planlandı, ürün vizyonu netleştirildi.
+
+Kullanıcıların adım adım çözüm girdikleri yapının yapay zekâ ile değerlendirilmesi hedeflendi.
+
+Kişiselleştirilmiş içerik sistemi ve oyunlaştırma unsurlarının altyapısı oluşturulmaya başlandı.
+
+Rol dağılımları tamamlandı, iletişim ve görev yönetimi planlandı.
+
+Slack üzerinden sesli scrum ve WhatsApp üzerinden destekleyici iletişim kararlaştırıldı.
+
+📌 Sprint sonunda puanlama tahmini: 50
+
+🔄 Sprint Retrospective
+✅ Olumlu Yönler
 Ekip içi uyum ve sorumluluk paylaşımı güçlüydü.
-Proje vizyonu netleşti ve temel yapı oturtuldu.
 
-Geliştirilmesi gerekenler:
-Sprint süresince daha fazla görsel/dokümantasyon oluşturulması ve teknik ilerleme faydalı olurdu.
-Görevlerin Trello/board sisteminde daha ayrıntılı takip edilmesi süreci hızlandırabilir.
+Roller net belirlendi, iletişim kanalları düzenli çalıştı.
 
-Bir sonraki sprintte, görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şekilde yürüterek ilerlemeyi somutlaştırmayı; geliştirilen modülleri küçük bir kullanıcı grubu üzerinde test ederek erken geri bildirim mekanizması kurmayı hedefliyoruz.
+Proje vizyonu netleşti ve temel yapı başarıyla oturtuldu.
+
+⚠️ Geliştirilmesi Gerekenler
+Sprint süresince daha fazla dokümantasyon ve teknik ilerleme yapılması faydalı olurdu.
+
+Trello/board sisteminde görevlerin daha detaylı takip edilmesi süreci iyileştirebilir.
+
+🎯 Gelecek Sprint İçin Hedefler
+Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şekilde yürüterek ilerlemeyi somutlaştırmayı; geliştirilen modülleri küçük bir kullanıcı grubu üzerinde test ederek erken geri bildirim mekanizması kurmayı hedefliyoruz.
