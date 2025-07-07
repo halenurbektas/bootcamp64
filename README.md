@@ -22,7 +22,7 @@ Tahmin mantığı: 200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde
 🤝 Daily Scrum
 Günlük scrum toplantılarının Slack üzerinden sesli yapılmasına,
 
-Gün içindeki hızlı iletişimler için WhatsApp grubu kullanılmasına karar verilmiştir. Trello üzerinden to do list oluşturulmuştur. https://trello.com/b/v2D5XIaz/to-do
+Gün içindeki hızlı iletişimler için WhatsApp grubu kullanılmasına karar verilmiştir. Trello üzerinden to do list oluşturulmuştur. https://trello.com/b/v2D5XIaz/to-do Ayrıca toplantı kararlarını ve ürün fikrini oyladığımız görseller linkte mevcuttur: https://drive.google.com/drive/folders/12NqbKd-k4XyxxLSzA7TN-w-2xf3REAHJ?usp=drive_link
 
 🛠 Sprint Board Updates
 Scrum Master: Halenur Bektaş
@@ -32,8 +32,8 @@ Product Owner: Eda Erer
 Developers: Nermin Tekgöz, Gökdeniz Kuruca, Ahmet Rıfat Karademir
 
 Screenshot: 
-![image](https://github.com/user-attachments/assets/4118565c-68d5-4a1a-a03d-30184e4d17d1)
-
+![image](https://github.com/user-attachments/assets/4118565c-68d5-4a1a-a03d-30184e4d17d1) 
+Ürün henüz teknik olarak oluşturulmaya başlanmadığı için ürün durum ss i yoktur.
 
 🔍 Sprint Review
 Bu sprintte:
