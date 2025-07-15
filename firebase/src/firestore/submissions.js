@@ -1,12 +1,23 @@
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase-config";
 
-export const submitAnswer = async ({ userId, problemId, answer, isCorrect }) => {
-  await addDoc(collection(db, "submissions"), {
-    userId,
-    problemId,
-    answer,
+export async function submitAnswer({
+  isCorrect,
+  problemId,
+  score,
+  steps,
+  userID,
+  answer,
+}) {
+  const submissionRef = doc(collection(db, "submissions"));
+  await setDoc(submissionRef, {
     isCorrect,
-    submittedAt: new Date()
+    problemId,
+    score,
+    steps,
+    submittedAt: serverTimestamp(),
+    uid: submissionRef.id,
+    userID,
+    answer,
   });
-};
+}
