@@ -1,52 +1,71 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-import { LayoutDashboard, BarChart2, Users, Settings, LogOut, X, UserCircle, Puzzle } from 'lucide-react'; // UserCircle ikonunu ekledik
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'; // NavLink kullanacağız
+import { 
+    LayoutDashboard, Puzzle, UserCircle, BarChart2, Users, Settings, LogOut, 
+    ChevronsLeft, ChevronsRight
+} from 'lucide-react';
 
-const Sidebar = ({ isOpen, setIsOpen }) => {
-  // DEĞİŞİKLİK: Menüye "Profil" eklendi ve `path`'ler güncellendi
+const Sidebar = () => {
+  const [isExpanded, setIsExpanded] = useState(true);
+
   const menuItems = [
     { name: 'Ana Panel', icon: <LayoutDashboard size={20} />, path: '/' },
     { name: 'Problemler', icon: <Puzzle size={20} />, path: '/problemler' },
-    { name: 'Profil', icon: <UserCircle size={20} />, path: '/profil' }, // YENİ PROFİL LİNKİ
-    { name: 'Analizler', icon: <BarChart2 size={20} />, path: '/analizler' }, // Gelecekteki sayfa
-    { name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' }, // Gelecekteki sayfa
-    { name: 'Ayarlar', icon: <Settings size={20} />, path: '/ayarlar' }, // Gelecekteki sayfa
+    { name: 'Profil', icon: <UserCircle size={20} />, path: '/profil' },
+    { name: 'Analizler', icon: <BarChart2 size={20} />, path: '/analizler' },
+    { name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' },
+    { name: 'Ayarlar', icon: <Settings size={20} />, path: '/ayarlar' },
   ];
 
   return (
-    <>
-      {/* ... (dosyanın geri kalanı aynı) ... */}
-      <aside /* ... */ >
-        <div /* ... */ >
-            {/* Logo linkini de Link bileşeni yapalım */}
-            <Link to="/" className="text-xl font-bold tracking-wider">MathVerse</Link>
-            <button /* ... */ >
-                <X size={24} />
-            </button>
-        </div>
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          {menuItems.map((item) => (
-            // DEĞİŞİKLİK: <a> etiketi yerine <Link> kullanıyoruz
-            <Link
-              key={item.name}
-              to={item.path}
-              className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-700/50 transition-colors duration-200"
-              onClick={() => setIsOpen(false)} // Mobil menüyü kapatmak için
-            >
-              {item.icon}
-              <span className="font-medium">{item.name}</span>
-            </Link>
-          ))}
-        </nav>
-        <div className="p-4 border-t border-slate-700/50">
-          {/* DEĞİŞİKLİK: Çıkış linki /login sayfasına yönlendirsin */}
-          <Link to="/login" className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-700/50 transition-colors duration-200">
-            <LogOut size={20} />
-            <span className="font-medium">Çıkış Yap</span>
-          </Link>
-        </div>
-      </aside>
-    </>
+    // DEĞİŞİKLİK: Sidebar daraldığında içeriğin ortalanması için `flex` ve `items-center` eklendi.
+    <aside 
+      className={`h-screen sticky top-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
+                 flex flex-col transition-all duration-300 ease-in-out
+                 ${isExpanded ? 'w-60' : 'w-20'}`}
+    >
+      <div className={`flex items-center p-4 h-16 border-b border-slate-200 dark:border-slate-800 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
+        <span className={`font-bold tracking-wider text-slate-800 dark:text-white transition-opacity duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+          MathVerse
+        </span>
+        <button onClick={() => setIsExpanded(!isExpanded)} className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            {isExpanded ? <ChevronsLeft size={20}/> : <ChevronsRight size={20}/>}
+        </button>
+      </div>
+
+      <nav className="flex-1 px-2 py-4 space-y-2">
+        {menuItems.map((item) => (
+          // DEĞİŞİKLİK: Link yerine NavLink kullanıyoruz.
+          // Bu, aktif olan linke özel bir stil vermemizi sağlar.
+          <NavLink
+            key={item.name}
+            to={item.path}
+            end // Bu, alt rotaların ana rotayı aktif yapmasını engeller. (örn: /profil, /'u aktif yapmaz)
+            className={({ isActive }) => `flex items-center gap-4 rounded-xl p-3 
+              transition-colors duration-200
+              ${isActive 
+                ? 'bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-300' 
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}
+              ${!isExpanded && 'justify-center'}` // Sidebar darsa ikonları ortala
+            }
+          >
+            {item.icon}
+            <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0 w-0'}`}>
+                {item.name}
+            </span>
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className={`px-2 py-4 border-t border-slate-200 dark:border-slate-800 ${!isExpanded && 'flex flex-col items-center'}`}>
+        <NavLink to="/login" className="flex items-center gap-4 w-full p-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+          <LogOut size={20} />
+          <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0 w-0'}`}>
+            Çıkış Yap
+          </span>
+        </NavLink>
+      </div>
+    </aside>
   );
 };
 
