@@ -1,13 +1,16 @@
 🚀 Bootcamp64 - Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
----------------------------------------------------------------------------
-Takım Üyeleri 
-Halenur Bektaş - Scrum Master 
-Gökdeniz Kuruca - Product Owner 
-Nermin Tekgöz - Developer
-Eda Erer - Developer 
-Ahmet Rıfat Karademir - Developer 
----------------------------------------------------------------------------
+## 👥 Takım Üyeleri
+
+| İsim                    | Rol             |
+|-------------------------|-----------------|
+| Halenur Bektaş          | Scrum Master    |
+| Gökdeniz Kuruca         | Product Owner   |
+| Nermin Tekgöz           | Developer       |
+| Eda Erer                | Developer       |
+| Ahmet Rıfat Karademir   | Developer       |
+
 Uygulama adı: *MathVerse*
+
 Uygulama Logosu:<img width="500" height="500" alt="4" src="https://github.com/user-attachments/assets/82e87f68-29d0-495f-93d9-764e3b570b02" />
 
 Uygulama Açıklaması: Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
