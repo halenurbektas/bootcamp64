@@ -2,16 +2,13 @@
 ## 👥 Takım Üyeleri
 
 
-## 👥 Takım Üyeleri
-
 | İsim                    | Rol             | LinkedIn                        |
 |-------------------------|-----------------|---------------------------------|
-| Gökdeniz Kuruca         | Product Owner   | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://linkedin.com/in/gokdenizkuruca) |
-| Halenur Bektaş          | Scrum Master    | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://linkedin.com/in/halenurbektas) |
-| Nermin Tekgöz           | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://linkedin.com/in/nermintekgoz) |
-| Eda Erer                | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://linkedin.com/in/edaerer) |
-| Ahmet Rıfat Karademir   | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://linkedin.com/in/ahmetrifatkarademir) |
-
+| Gökdeniz Kuruca         | Product Owner   | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/gokdenizkuruca) |
+| Halenur Bektaş          | Scrum Master    | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/halenur-bektas/) |
+| Nermin Tekgöz           | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/nermin-tekg%C3%B6z-237147325/) |
+| Eda Erer                | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/eda-erer/) |
+| Ahmet Rıfat Karademir   | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/ahmetrifatkarademir/) |
 
 
 **Uygulama adı:** MathVerse
