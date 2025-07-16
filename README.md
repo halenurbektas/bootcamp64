@@ -33,7 +33,9 @@ Bu yenilikçi platform, Türkiye’deki matematik okuryazarlığı problemini ç
 **Sprint 1:**
 
 **Sprint Notları:** Ürünün fikir aşaması ve ana hatları belirlenmiş ve notlarda açıklanmıştır.
+
 **📊 Tahmin Edilen Tamamlanacak Puan:** 50
+
 **Tahmin mantığı:** 200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde 4 parçaya bölünmüştür.
 
 **🤝 Daily Scrum**
@@ -78,6 +80,8 @@ Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şek
 **Sprint 2:** 
 
 **Sprint Notları:**
+
+
 **Tahmin Edilen Tamamlanacak Puan:**
 **Tahmin Mantığı:**
 **Daily Scrum:**
