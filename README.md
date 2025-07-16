@@ -74,3 +74,14 @@ Trello/board sisteminde görevlerin daha detaylı takip edilmesi süreci iyileş
 
 **🎯 Gelecek Sprint İçin Hedefler**
 Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şekilde yürüterek ilerlemeyi somutlaştırmayı; geliştirilen modülleri küçük bir kullanıcı grubu üzerinde test ederek erken geri bildirim mekanizması kurmayı hedefliyoruz.
+
+**Sprint 2:** 
+
+**Sprint Notları:**
+**Tahmin Edilen Tamamlanacak Puan:**
+**Tahmin Mantığı:**
+**Daily Scrum:**
+**Sprint Board Updates:**
+**Screenshot:**
+**Sprint Review:**
+**Sprint Retrospective:**
