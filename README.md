@@ -11,7 +11,7 @@
 
 **Uygulama adı:** MathVerse
 
-<img width="221" height="177" alt="4math" src="https://github.com/user-attachments/assets/f459a666-3d64-4622-892e-20474b21ef56" />
+<img width="500" height="500" alt="mathverse logo  (1)" src="https://github.com/user-attachments/assets/4f1625c4-6da5-4a8f-bad3-003d4030ee05" />
 
 
 **Uygulama Açıklaması:** Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
