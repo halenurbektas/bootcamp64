@@ -30,6 +30,8 @@ Günlük bulmacalar, meydan okumalar, rozet sistemi ve seviye atlama gibi oyunla
 
 Bu yenilikçi platform, Türkiye’deki matematik okuryazarlığı problemini çözmeye katkı sağlamak, matematiği eğlenceli ve etkili bir şekilde öğrenilebilir kılmak amacıyla tasarlanmıştır.
 
+---
+
 **Sprint 1:**
 
 **Sprint Notları:** Ürünün fikir aşaması ve ana hatları belirlenmiş ve notlarda açıklanmıştır.
@@ -59,6 +61,8 @@ Rol dağılımları tamamlandı, iletişim ve görev yönetimi planlandı.
 
 Slack üzerinden sesli scrum ve WhatsApp üzerinden destekleyici iletişim kararlaştırıldı.
 
+---
+
 **📌 Sprint sonunda puanlama tahmini:** 50
 
 **🔄 Sprint Retrospective**
@@ -76,6 +80,8 @@ Trello/board sisteminde görevlerin daha detaylı takip edilmesi süreci iyileş
 
 **🎯 Gelecek Sprint İçin Hedefler**
 Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şekilde yürüterek ilerlemeyi somutlaştırmayı; geliştirilen modülleri küçük bir kullanıcı grubu üzerinde test ederek erken geri bildirim mekanizması kurmayı hedefliyoruz.
+
+---
 
 **Sprint 2:** 
 
@@ -98,6 +104,8 @@ Haftalık sesli toplantılar slack üzerinden ve günlük konuşmalar whatsapp g
 **Screenshot:**
 
 https://github.com/user-attachments/assets/a27ef589-d2c5-47f8-a1bc-835b5901f9cf
+
+---
 
 **Sprint Review:**
 
