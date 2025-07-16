@@ -31,6 +31,7 @@ Günlük bulmacalar, meydan okumalar, rozet sistemi ve seviye atlama gibi oyunla
 Bu yenilikçi platform, Türkiye’deki matematik okuryazarlığı problemini çözmeye katkı sağlamak, matematiği eğlenceli ve etkili bir şekilde öğrenilebilir kılmak amacıyla tasarlanmıştır.
 
 **Sprint 1:**
+
 **Sprint Notları:** Ürünün fikir aşaması ve ana hatları belirlenmiş ve notlarda açıklanmıştır.
 **📊 Tahmin Edilen Tamamlanacak Puan:** 50
 **Tahmin mantığı:** 200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde 4 parçaya bölünmüştür.
