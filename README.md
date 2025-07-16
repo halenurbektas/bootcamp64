@@ -81,11 +81,24 @@ Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şek
 
 **Sprint Notları:**
 
+**Tahmin Edilen Tamamlanacak Puan:** 50
 
-**Tahmin Edilen Tamamlanacak Puan:**
 **Tahmin Mantığı:**
+
+200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde 4 parçaya bölünmüştür.
+
 **Daily Scrum:**
+
+Haftalık sesli toplantılar slack üzerinden ve günlük konuşmalar whatsapp grubu üzerinden yapılır. https://drive.google.com/drive/u/0/folders/1e4QO7EtwQ4zwp0Ft5wt93n_-UtXSbnLX
+
 **Sprint Board Updates:**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8745e02f-faff-4e0c-884d-d32a53cb5a14" />
+
 **Screenshot:**
+
+
+https://github.com/user-attachments/assets/716c46b7-03a2-4c77-8ae6-905058b00da4
+
+
 **Sprint Review:**
 **Sprint Retrospective:**
