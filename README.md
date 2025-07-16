@@ -1,6 +1,16 @@
 🚀 Bootcamp64 - Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
-📝 Sprint Notları
-Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
+
+Takım Üyeleri 
+Halenur Bektaş - Scrum Master 
+Gökdeniz Kuruca - Product Owner 
+Nermin Tekgöz - Developer
+Eda Erer - Developer 
+Ahmet Rıfat Karademir - Developer 
+---------------------------------------------------------------------------
+Uygulama adı: *MathVerse*
+Uygulama Logosu:<img width="500" height="500" alt="4" src="https://github.com/user-attachments/assets/82e87f68-29d0-495f-93d9-764e3b570b02" />
+
+Uygulama Açıklaması: Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
 
 Platformda kullanıcılar:
 
@@ -15,7 +25,9 @@ Her kullanıcıya özel eksik konular belirlenerek kişiselleştirilmiş eğitim
 Günlük bulmacalar, meydan okumalar, rozet sistemi ve seviye atlama gibi oyunlaştırma öğeleri ile kullanıcı bağlılığı artırılacaktır.
 
 Bu yenilikçi platform, Türkiye’deki matematik okuryazarlığı problemini çözmeye katkı sağlamak, matematiği eğlenceli ve etkili bir şekilde öğrenilebilir kılmak amacıyla tasarlanmıştır.
-
+------------------------------------------------------------------------------------------
+Sprint 1: 
+Sprint Notları: Ürünün fikir aşaması ve ana hatları belirlenmiş ve notlarda açıklanmıştır.
 📊 Tahmin Edilen Tamamlanacak Puan: 50
 Tahmin mantığı: 200 puan üzerinden 3 sprint + ürün teslimi olacak şekilde 4 parçaya bölünmüştür.
 
@@ -25,15 +37,7 @@ Günlük scrum toplantılarının Slack üzerinden sesli yapılmasına,
 Gün içindeki hızlı iletişimler için WhatsApp grubu kullanılmasına karar verilmiştir. Trello üzerinden to do list oluşturulmuştur. https://trello.com/b/v2D5XIaz/to-do Ayrıca toplantı kararlarını ve ürün fikrini oyladığımız görseller linkte mevcuttur: https://drive.google.com/drive/folders/12NqbKd-k4XyxxLSzA7TN-w-2xf3REAHJ?usp=drive_link
 
 🛠 Sprint Board Updates
-Scrum Master: Halenur Bektaş
-
-Product Owner: Eda Erer
-
-Developers: Nermin Tekgöz, Gökdeniz Kuruca, Ahmet Rıfat Karademir
-
-Screenshot: 
 ![image](https://github.com/user-attachments/assets/4118565c-68d5-4a1a-a03d-30184e4d17d1) 
-Ürün henüz teknik olarak oluşturulmaya başlanmadığı için ürün durum ss i yoktur.
 
 🔍 Sprint Review
 Bu sprintte:
