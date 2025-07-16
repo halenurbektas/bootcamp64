@@ -10,7 +10,9 @@
 | <img src="https://media.licdn.com/dms/image/v2/D4D03AQEPguddLpWVeA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1702315968421?e=1758153600&v=beta&t=1PUkoZ7N5OYwXyQwBgFyca4pKARXgx3kDYw-ckmExVs" width="40"/> **Ahmet Rıfat Karademir** | Developer | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/ahmetrifatkarademir/) |
 
 **Uygulama adı:** MathVerse
-![Uploading 4math.png…]()
+
+<img width="221" height="177" alt="4math" src="https://github.com/user-attachments/assets/f459a666-3d64-4622-892e-20474b21ef56" />
+
 
 **Uygulama Açıklaması:** Bu proje, kullanıcıların yalnızca matematik problemlerinin sonucunu değil, çözüm adımlarını da yazarak değerlendirildiği, hem rekabetçi hem de eğitsel bir matematik platformu geliştirmeyi hedeflemektedir.
 
