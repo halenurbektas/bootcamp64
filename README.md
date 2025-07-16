@@ -101,5 +101,69 @@ https://github.com/user-attachments/assets/a27ef589-d2c5-47f8-a1bc-835b5901f9cf
 
 **Sprint Review:**
 
+### 🔐 Kullanıcı Yönetimi ve Yetkilendirme
+- Authentication düzeyi (outlevel) tanımlandı:
+  - `outlevel = 1` → Admin kullanıcı
+  - Kullanıcı ekranında outlevel 0'dan 1'e çıkararak admin yapma özelliği eklendi
+- Kullanıcı bilgileri listeleme özelliği geliştirildi
+- Kullanıcı giriş, şifre değiştirme ve hesap silme sayfası tasarlandı
+- Kullanıcıların çözdüğü sorular ve başarıları gösteriliyor
 
+### 🧠 Problem ve Soru Sistemi
+- Kullanıcıların çözdüğü problemler kayıt altına alınıyor
+- Sorulara gelen anlık submission’lar tutuluyor
+- Soru zorluk derecelerine göre (Kolay, Orta, Zor) filtreleme yapıldı
+- Sorular için case bilgisi tanımlandı (örnek testler vb.)
+- Soru listeleme ve görüntüleme modülü tamamlandı
+
+### 🎨 Frontend Gelişmeleri
+- Giriş yapan kullanıcıya göre login nesneleri organize edildi
+- Tema sistemi eklendi (beyaz, siyah vb.)
+- Bazı bölümlerde manuel authentication yapıldı
+- Yeni kullanıcı sekmesi sadece adminler için görünür hale getirildi
+
+### 📊 Puanlama ve Rozet Sistemi
+- Sorulara zorluk katsayısına göre max puan atandı
+- AI tabanlı değerlendirme sistemi için altyapı hazırlandı
+- Submission puanlaması: `“Bu çözüm X puan aldı çünkü…”` yapısı planlandı
+- XP puan sistemi geliştirilmeye başlandı
+- Kullanıcının giriş günü ve toplam puanı tutuluyor
+- Günlük girişe göre rozet kazanma sistemi tasarlandı
+
+### 🎥 İçerik ve Eğitim Bölümü
+- Video ekleme sayfası planlandı
+- Yeni soru ekleme bölümü tasarlandı
+- Eğitim sekmesi için altyapı başlatıldı
+
+---
 **Sprint Retrospective:**
+
+### 👍 İyi Gidenler
+- Kullanıcı sistemi ve yetkilendirme sorunsuz çalışıyor
+- Frontend temaları ve kullanıcı deneyimi gelişti
+- Soru sistemi işlevsel hale geldi
+- Ekip rolleri netleşti:
+  - `Eda` → Backend
+  - `Nermin` → Frontend
+  - `Gökdeniz` → AI ve değerlendirme
+  - `Ahmet` → AI tarafına odaklanmak istiyor
+
+### ⚠️ Geliştirilecek Alanlar
+- Login sonrası nesne yönetimi netleştirilmeli
+- Backend-Frontend veri eşleşmesinde yer sorunları giderilmeli
+- Silme işlemleri henüz backend'de yok
+- Kodlar modüler dosya yapısına ayrılmalı (backend/front ayrı)
+
+---
+
+### Planlananlar
+- Kullanıcı silme özelliği eklenecek
+- Frontend login sonrası nesne yapısı düzeltilecek
+- Eğitim modülü tamamlanacak
+- Rozet sistemi detaylandırılacak
+- Video ve yeni soru ekleme sayfaları geliştirilecek
+- AI puanlama sistemi kullanıcılara gerekçeli geri bildirim verecek
+- Frontend üzerine modüler olarak geliştirmeler devam edecek
+- Servisler ayrı dosya yapısına taşınacak
+- Admin paneli üzerinden kullanıcı işlemleri yönetilecek
+
