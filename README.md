@@ -1,13 +1,15 @@
 🚀 Bootcamp64 - Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
 ## 👥 Takım Üyeleri
 
-| İsim                    | Rol             |
-|-------------------------|-----------------|
-| Halenur Bektaş          | Scrum Master    |
-| Gökdeniz Kuruca         | Product Owner   |
-| Nermin Tekgöz           | Developer       |
-| Eda Erer                | Developer       |
-| Ahmet Rıfat Karademir   | Developer       |
+
+| İsim                    | Rol             | LinkedIn                        |
+|-------------------------|-----------------|---------------------------------|
+| Gökdeniz Kuruca         | Product Owner   | [LinkedIn]https://www.linkedin.com/in/gokdenizkuruca/      |
+| Halenur Bektaş          | Scrum Master    | [LinkedIn](https://www.linkedin.com/in/halenur-bektas/)     |
+| Nermin Tekgöz           | Developer       | [LinkedIn]  https://www.linkedin.com/in/nermin-tekg%C3%B6z-237147325/     |
+| Eda Erer                | Developer       | [LinkedIn][(https://linkedin.com/in/edaerer) ](https://www.linkedin.com/in/eda-erer/)             |
+| Ahmet Rıfat Karademir   | Developer       | [LinkedIn][(https://linkedin.com/in/ahmetrifatkarademir)  ](https://www.linkedin.com/in/ahmetrifatkarademir/)|
+
 
 **Uygulama adı:** MathVerse
 
