@@ -4,15 +4,15 @@
 | Üye                    | Rol             | LinkedIn                        |
 |------------------------|-----------------|---------------------------------|
 | <img src=![gökdeniz](https://github.com/user-attachments/assets/fac64976-cd85-4520-a763-f11fe82b7f11)
- width="40"/> Gökdeniz Kuruca       | Product Owner   | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/gokdenizkuruca) |
+ width="5"/> Gökdeniz Kuruca       | Product Owner   | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/gokdenizkuruca) |
 | <img src=![biometrik](https://github.com/user-attachments/assets/127de8f9-3778-4585-bd99-0f9e388779c4)
- width="40"/> Halenur Bektaş        | Scrum Master    | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/halenur-bektas/) |
+ width="5"/> Halenur Bektaş        | Scrum Master    | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/halenur-bektas/) |
 | <img src=![nermin](https://github.com/user-attachments/assets/e132652b-40a2-45ed-8188-c94d74aa8fcb)
- width="40"/> Nermin Tekgöz         | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/nermin-tekg%C3%B6z-237147325/) |
+ width="5"/> Nermin Tekgöz         | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/nermin-tekg%C3%B6z-237147325/) |
 | <img src=![eda](https://github.com/user-attachments/assets/e7f5c6d3-1d8c-441f-8522-21907f92f514)
- width="40"/> Eda Erer              | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/eda-erer/) |
+ width="5"/> Eda Erer              | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/eda-erer/) |
 | <img src=![Uploading ahmet.jpeg…]()
- width="40"/> Ahmet Rıfat Karademir | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/ahmetrifatkarademir/) |
+ width="5"/> Ahmet Rıfat Karademir | Developer       | [![LinkedIn](https://cdn-icons-png.flaticon.com/24/174/174857.png)](https://www.linkedin.com/in/ahmetrifatkarademir/) |
 
 
 
