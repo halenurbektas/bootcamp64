@@ -1,5 +1,5 @@
 🚀 Bootcamp64 - Yapay Zeka ve Teknoloji Akademisi Mezuniyet Bootcampi - Grup 64
-
+---------------------------------------------------------------------------
 Takım Üyeleri 
 Halenur Bektaş - Scrum Master 
 Gökdeniz Kuruca - Product Owner 
