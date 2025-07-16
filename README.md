@@ -92,13 +92,14 @@ Görev dağılımını Jira/Trello gibi araçlar üzerinden daha sistematik şek
 Haftalık sesli toplantılar slack üzerinden ve günlük konuşmalar whatsapp grubu üzerinden yapılır. https://drive.google.com/drive/u/0/folders/1e4QO7EtwQ4zwp0Ft5wt93n_-UtXSbnLX
 
 **Sprint Board Updates:**
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8745e02f-faff-4e0c-884d-d32a53cb5a14" />
+
+<img width="1920" height="759" alt="Ekran Görüntüsü (214)" src="https://github.com/user-attachments/assets/9ad1f688-cd10-4ae5-a929-52fa3896d7a6" />
 
 **Screenshot:**
 
-
-https://github.com/user-attachments/assets/716c46b7-03a2-4c77-8ae6-905058b00da4
-
+https://github.com/user-attachments/assets/a27ef589-d2c5-47f8-a1bc-835b5901f9cf
 
 **Sprint Review:**
+
+
 **Sprint Retrospective:**
