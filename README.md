@@ -41,7 +41,7 @@
 
 ## 🗂️ İçindekiler
 
-- [Takım Üyeleri](#takım-üyeleri)
+- [Takım Üyeleri](#-takım-üyeleri)
 - [Uygulama Açıklaması](#-uygulama-açıklaması)
 - [Sprint 1](#-sprint-1)
 - [Sprint 2](#-sprint-2)
