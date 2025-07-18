@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Bell, Sun, Moon, UserCircle, Settings, LogOut } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../hooks/useTheme';
 
 const Header = ({ setSidebarOpen }) => {
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);

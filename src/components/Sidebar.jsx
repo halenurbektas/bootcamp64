@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'; // NavLink kullanacağız
+import { NavLink } from 'react-router-dom';
 import { 
     LayoutDashboard, Puzzle, UserCircle, BarChart2, Users, Settings, LogOut, 
     ChevronsLeft, ChevronsRight
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ onLogout }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const menuItems = [
@@ -18,7 +18,6 @@ const Sidebar = () => {
   ];
 
   return (
-    // DEĞİŞİKLİK: Sidebar daraldığında içeriğin ortalanması için `flex` ve `items-center` eklendi.
     <aside 
       className={`h-screen sticky top-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 
                  flex flex-col transition-all duration-300 ease-in-out
@@ -35,18 +34,16 @@ const Sidebar = () => {
 
       <nav className="flex-1 px-2 py-4 space-y-2">
         {menuItems.map((item) => (
-          // DEĞİŞİKLİK: Link yerine NavLink kullanıyoruz.
-          // Bu, aktif olan linke özel bir stil vermemizi sağlar.
           <NavLink
             key={item.name}
             to={item.path}
-            end // Bu, alt rotaların ana rotayı aktif yapmasını engeller. (örn: /profil, /'u aktif yapmaz)
+            end
             className={({ isActive }) => `flex items-center gap-4 rounded-xl p-3 
               transition-colors duration-200
               ${isActive 
                 ? 'bg-purple-100 text-purple-800 dark:bg-purple-800/30 dark:text-purple-300' 
                 : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}
-              ${!isExpanded && 'justify-center'}` // Sidebar darsa ikonları ortala
+              ${!isExpanded && 'justify-center'}`
             }
           >
             {item.icon}
@@ -58,12 +55,15 @@ const Sidebar = () => {
       </nav>
 
       <div className={`px-2 py-4 border-t border-slate-200 dark:border-slate-800 ${!isExpanded && 'flex flex-col items-center'}`}>
-        <NavLink to="/login" className="flex items-center gap-4 w-full p-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <button
+          onClick={onLogout}
+          className="flex items-center gap-4 w-full p-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+        >
           <LogOut size={20} />
           <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0 w-0'}`}>
             Çıkış Yap
           </span>
-        </NavLink>
+        </button>
       </div>
     </aside>
   );
