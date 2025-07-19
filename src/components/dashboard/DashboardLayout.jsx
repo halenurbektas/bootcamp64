@@ -4,9 +4,10 @@ import Sidebar from '../Sidebar';
 import Header from '../Header';
 
 const DashboardLayout = ({ user, userData, onLogout }) => {
+  console.log("userData:", userData);
   return (
     <div className="relative flex h-screen bg-slate-100 dark:bg-slate-900">
-      <Sidebar user={user} userData={userData} onLogout={onLogout} />
+      <Sidebar onLogout={onLogout} authLevel={userData?.authLevel} />
       
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header user={user} userData={userData} onLogout={onLogout} />

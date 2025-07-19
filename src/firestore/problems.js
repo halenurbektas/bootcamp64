@@ -1,7 +1,5 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase-config";
-
-const problemsCollection = collection(db, "problems");
 
 export async function getAllProblems() {
   const problemsCol = collection(db, "problems");
@@ -15,15 +13,15 @@ export async function getAllProblems() {
   return problems;
 }
 
-export async function addProblem({ title, content, answer, createdBy = "*", difficulty = 1, testCases = [], topic = "" }) {
-  const docRef = await addDoc(problemsCollection, {
-    title,
+export const addProblem = async ({ content, answer, difficulty, point, testCases, title, topic }) => {
+  await addDoc(collection(db, "problems"), {
     content,
     answer,
-    createdBy,
     difficulty,
+    point,
     testCases,
-    topic
+    title,
+    topic,
+    createdAt: serverTimestamp(),
   });
-  return docRef.id;
-}
+};

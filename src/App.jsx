@@ -14,6 +14,7 @@ import ProblemSolvePage from './pages/ProblemSolvePage.jsx';
 import AnalyticsPage from './pages/AnalyticsPage.jsx';
 import UsersPage from './pages/UsersPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
+import AddProblem from './pages/AddProblem.jsx';
 
 // Layout
 import DashboardLayout from './components/dashboard/DashboardLayout.jsx';
@@ -74,10 +75,11 @@ function App() {
           <Route index element={<Dashboard user={user} userData={userData} />} />
           <Route path="profil" element={<Profile userData={userData} />} />
           <Route path="problemler" element={<ProblemsListPage problems={problems} />} />
-          <Route path="problem/:problemId" element={<ProblemSolvePage problems={problems} />} />
+          <Route path="problem/:problemId" element={<ProblemSolvePage problems={problems} userData={userData}/>} />
           <Route path="analizler" element={<AnalyticsPage />} />
           <Route path="kullanicilar" element={<UsersPage />} />
           <Route path="ayarlar" element={<SettingsPage />} />
+          <Route path="/add-problem" element={<AddProblem />} />
         </Route>
 
         {/* Bilinmeyen rotaları yakala */}

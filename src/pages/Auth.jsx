@@ -23,7 +23,8 @@ const Auth = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [registerName, setRegisterName] = useState('');
+  const [registerFirstName, setRegisterFirstName] = useState("");
+  const [registerLastName, setRegisterLastName] = useState("");
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
 
@@ -47,11 +48,16 @@ const Auth = () => {
       const user = userCredential.user;
 
       await setDoc(doc(db, "users", user.uid), {
-        name: registerName,
+        authLevel: 1, // 0: admin, 1: standard user
+        badges: [],
         email: registerEmail,
-        point: 0,
-        authLevel: "user",
         joinedAt: serverTimestamp(),
+        name: registerFirstName,
+        point: 0,
+        solvedProblems: [],
+        streak: 0,
+        surname: registerLastName,
+        uid: user.uid
       });
 
       alert('Kayıt başarılı, şimdi giriş yapabilirsiniz.');
@@ -81,8 +87,9 @@ const Auth = () => {
         <div className="w-full p-8 space-y-6 bg-slate-800/40 rounded-3xl shadow-2xl border border-slate-700 text-white [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <div className="text-center"><h1 className="text-3xl font-bold">Create Account</h1><p className="text-slate-400 mt-2">Sign up to get started</p></div>
           <form className="space-y-4" onSubmit={handleRegister}>
-            <div><label className="block mb-2 text-sm font-medium text-slate-300">Full Name</label><input type="text" value={registerName} onChange={(e) => setRegisterName(e.target.value)} className={inputClasses} /></div>
-            <div><label className="block mb-2 text-sm font-medium text-slate-300">Email</label><input type="email" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} className={inputClasses} /></div>
+            <div><label className="block mb-2 text-sm font-medium text-slate-300">Ad</label><input type="text" value={registerFirstName} onChange={(e) => setRegisterFirstName(e.target.value)} className={inputClasses} /></div>
+            <div><label className="block mb-2 text-sm font-medium text-slate-300">Soyad</label><input type="text" value={registerLastName} onChange={(e) => setRegisterLastName(e.target.value)} className={inputClasses} /></div>
+            <div><label className="block mb-2 text-sm font-medium text-slate-300">Email</label><input type="email" value={registerEmail}  onChange={(e) => setRegisterEmail(e.target.value)}  className={inputClasses} /></div>
             <div><label className="block mb-2 text-sm font-medium text-slate-300">Password</label><input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} className={inputClasses} /></div>
             <button type="submit" className={buttonClasses}>Create Account</button>
           </form>

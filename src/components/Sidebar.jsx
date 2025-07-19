@@ -5,15 +5,17 @@ import {
     ChevronsLeft, ChevronsRight
 } from 'lucide-react';
 
-const Sidebar = ({ onLogout }) => {
+const Sidebar = ({ onLogout, authLevel }) => {
   const [isExpanded, setIsExpanded] = useState(true);
-
+ 
   const menuItems = [
     { name: 'Ana Panel', icon: <LayoutDashboard size={20} />, path: '/' },
     { name: 'Problemler', icon: <Puzzle size={20} />, path: '/problemler' },
     { name: 'Profil', icon: <UserCircle size={20} />, path: '/profil' },
     { name: 'Analizler', icon: <BarChart2 size={20} />, path: '/analizler' },
-    { name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' },
+    ...(authLevel === 0
+      ? [{ name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' }]
+      : []),
     { name: 'Ayarlar', icon: <Settings size={20} />, path: '/ayarlar' },
   ];
 

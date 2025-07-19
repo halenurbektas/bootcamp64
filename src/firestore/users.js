@@ -1,5 +1,6 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
+import { collection, getCountFromServer } from "firebase/firestore";
 
 export async function addUserPoints(uid, pointsToAdd) {
   const userRef = doc(db, "users", uid);
@@ -32,3 +33,9 @@ export async function updateUserData(uid, newData) {
   const userRef = doc(db, "users", uid);
   await updateDoc(userRef, newData);
 }
+
+export const getUserCount = async () => {
+  const coll = collection(db, "users");
+  const snapshot = await getCountFromServer(coll);
+  return snapshot.data().count;
+};
