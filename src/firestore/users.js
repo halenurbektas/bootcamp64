@@ -16,7 +16,6 @@ export async function addUserPoints(uid, pointsToAdd) {
   }
 }
 
-// 🔹 Kullanıcı verilerini çekme
 export async function getUserData(uid) {
   const userRef = doc(db, "users", uid);
   const userSnap = await getDoc(userRef);
@@ -28,11 +27,17 @@ export async function getUserData(uid) {
   }
 }
 
-// 🔸 Kullanıcı verilerini güncelleme (opsiyonel)
-export async function updateUserData(uid, newData) {
-  const userRef = doc(db, "users", uid);
-  await updateDoc(userRef, newData);
-}
+export const updateUserData = async (uid, newData) => {
+  try {
+    const userRef = doc(db, "users", uid);
+    await updateDoc(userRef, newData);
+    console.log('Kullanıcı başarıyla güncellendi:', uid, newData);
+    return true;
+  } catch (error) {
+    console.error('Kullanıcı güncelleme hatası:', error);
+    throw error;
+  }
+};
 
 export const getUserCount = async () => {
   const coll = collection(db, "users");

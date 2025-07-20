@@ -27,17 +27,35 @@ const ActionButton = ({ icon, label, isDestructive = false }) => (
 );
 
 
-const Profile = () => {
+const Profile = ({ userData, onLogout }) => {
   // Sayfa yönlendirmesi ve tema değiştirme için hook'larımızı çağırıyoruz
   const navigate = useNavigate();
   const { toggleTheme } = useTheme();
+
+  // Eğer userData yoksa loading state göster
+  if (!userData) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <p className="text-slate-500 dark:text-slate-400">Kullanıcı bilgileri yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
   
-  // Örnek rozet verileri
+  // Örnek rozet verileri - ileride backend'den gelebilir
   const userBadges = [
     { label: 'Usta Çözücü', icon: <Award size={18} />, color: 'bg-yellow-100 text-yellow-800', darkColor: 'dark:bg-yellow-500/20 dark:text-yellow-300' },
     { label: 'Doğruluk Şampiyonu', icon: <ShieldCheck size={18} />, color: 'bg-green-100 text-green-800', darkColor: 'dark:bg-green-500/20 dark:text-green-300' },
     { label: 'Haftanın Yıldızı', icon: <Star size={18} />, color: 'bg-purple-100 text-purple-800', darkColor: 'dark:bg-purple-500/20 dark:text-purple-300' },
   ];
+
+  // Kullanıcının adını al (displayName varsa onu kullan, yoksa email'den al)
+  const userName = userData.displayName || userData.email?.split('@')[0] || 'Kullanıcı';
+  
+  // Avatar için seed (kullanıcı adı veya email)
+  const avatarSeed = userData.displayName || userData.email || 'User';
   
   return (
     <div>
@@ -54,7 +72,7 @@ const Profile = () => {
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-8">
           <div className="relative shrink-0">
             <img 
-              src="https://api.dicebear.com/8.x/initials/svg?seed=Nermin" 
+              src={userData.photoURL || `https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(avatarSeed)}`}
               alt="Kullanıcı Avatarı"
               className="w-32 h-32 rounded-full object-cover border-4 border-slate-200 dark:border-slate-700"
             />
@@ -63,8 +81,14 @@ const Profile = () => {
             </button>
           </div>
           <div className="text-center md:text-left">
-            <h2 className="text-3xl font-bold text-slate-800 dark:text-white">Nermin</h2>
-            <p className="text-slate-500 dark:text-slate-400">nermin@gmail.com</p>
+            <h2 className="text-3xl font-bold text-slate-800 dark:text-white">{userName}</h2>
+            <p className="text-slate-500 dark:text-slate-400">{userData.email}</p>
+            {userData.emailVerified && (
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-500/20 rounded-full mt-2">
+                <ShieldCheck size={12} />
+                E-posta Doğrulandı
+              </span>
+            )}
             <div className="flex items-center justify-center md:justify-start flex-wrap gap-4 mt-4">
               {userBadges.map(badge => <Badge key={badge.label} {...badge} />)}
             </div>
@@ -77,10 +101,33 @@ const Profile = () => {
         {/* Ayarlar ve Diğer Bölümler */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Hakkında</h3>
-            <p className="text-slate-600 dark:text-slate-300">
-              Matematiği ve problem çözmeyi seven bir yazılım geliştirici. Boş zamanlarımda platformdaki zorlu sorularla uğraşmayı seviyorum!
-            </p>
+            <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Hesap Bilgileri</h3>
+            <div className="space-y-3">
+            <div>
+              <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Yetki Seviyesi</p>
+              <p className="text-slate-700 dark:text-slate-300">
+                {userData.authLevel === 0 ? 'Admin' : 'Kullanıcı'}
+              </p>
+            </div>
+              <div>
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Hesap Oluşturma</p>
+                <p className="text-slate-700 dark:text-slate-300">
+                  {userData.metadata?.creationTime 
+                    ? new Date(userData.metadata.creationTime).toLocaleDateString('tr-TR')
+                    : 'Bilinmiyor'
+                  }
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Son Giriş</p>
+                <p className="text-slate-700 dark:text-slate-300">
+                  {userData.metadata?.lastSignInTime 
+                    ? new Date(userData.metadata.lastSignInTime).toLocaleDateString('tr-TR')
+                    : 'Bilinmiyor'
+                  }
+                </p>
+              </div>
+            </div>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Ayarlar ve İşlemler</h3>
@@ -89,14 +136,14 @@ const Profile = () => {
                 <button onClick={() => navigate('/ayarlar')} className="w-full group">
                     <ActionButton icon={<Settings size={20} className="text-slate-500 dark:text-slate-400"/>} label="Profili Düzenle"/>
                 </button>
-                <button onClick={() => navigate('/ayarlar')} className="w-full group">
+                <button onClick={() => navigate("/ayarlar?tab=guvenlik")} className="w-full group">
                     <ActionButton icon={<Lock size={20} className="text-slate-500 dark:text-slate-400"/>} label="Şifre Değiştir"/>
                 </button>
                 <button onClick={toggleTheme} className="w-full group">
                     <ActionButton icon={<Sun size={20} className="text-slate-500 dark:text-slate-400"/>} label="Tema Değiştir"/>
                 </button>
-                <button onClick={() => navigate('/login')} className="w-full group">
-                    <ActionButton icon={<LogOut size={20} />} label="Çıkış Yap" isDestructive={true}/>
+                <button onClick={() => { onLogout(); navigate('/login'); }} className="w-full group">
+                    <ActionButton icon={<LogOut size={20} />} label="Çıkış Yap" isDestructive={true} />
                 </button>
             </div>
           </div>

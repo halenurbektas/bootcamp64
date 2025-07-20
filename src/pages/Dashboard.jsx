@@ -33,7 +33,7 @@ const Dashboard = ({ userData }) => {
       {/* Sayfa Başlığı */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Ana Panel</h1>
-        <p className="text-slate-500 dark:text-slate-400">Tekrar hoş geldin, {userData?.name} {userData?.surname}! İşte ilerleme özetin.</p>
+        <p className="text-slate-500 dark:text-slate-400">Tekrar hoş geldin, {userData?.name}! İşte ilerleme özetin.</p>
       </div>
 
       {/* İstatistik Kartları */}
