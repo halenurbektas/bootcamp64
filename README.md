@@ -130,7 +130,7 @@
 #### 🔐 Kullanıcı Yönetimi ve Yetkilendirme
 
 - Authentication düzeyi (auth_level) tanımlandı:
-  - `auth_level = 1` → Admin kullanıcı
+  - `auth_level = 0` → Admin kullanıcı
   - Kullanıcı ekranında auth_level 0'dan 1'e çıkararak admin yapma özelliği eklendi
 - Kullanıcı bilgileri listeleme özelliği geliştirildi
 - Kullanıcı giriş, şifre değiştirme ve hesap silme sayfası tasarlandı
