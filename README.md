@@ -22,7 +22,7 @@
 
 <div align="center">
 
-<img width="200" alt="mathverse logo" src="https://github.com/user-attachments/assets/cfe77f1c-9751-4809-941f-e985b8aa74ad" /
+<img width="200" alt="mathverse logo" src="https://github.com/userattachments/assets/cfe77f1c-9751-4809-941f-e985b8aa74ad"/>
 
 </div>
 
