@@ -15,6 +15,7 @@ import AnalyticsPage from './pages/AnalyticsPage.jsx';
 import UsersPage from './pages/UsersPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 import AddProblem from './pages/AddProblem.jsx';
+import BadgesPage from './pages/BadgesPage.jsx';
 
 // Layout
 import DashboardLayout from './components/dashboard/DashboardLayout.jsx';
@@ -80,6 +81,7 @@ function App() {
           <Route path="kullanicilar" element={<UsersPage />} />
           <Route path="ayarlar" element={<SettingsPage userData={userData}/>} />
           <Route path="/add-problem" element={<AddProblem />} />
+          <Route path="rozetler" element={<BadgesPage />} />
         </Route>
 
         {/* Bilinmeyen rotaları yakala */}
