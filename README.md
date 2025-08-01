@@ -22,7 +22,7 @@
 
 <div align="center">
 
-<img width="200" alt="mathverse logo" src="https://github.com/user-attachments/assets/cfe77f1c-9751-4809-941f-e985b8aa74ad" />
+<img width="500" height="500" alt="5" src="https://github.com/user-attachments/assets/9e2de374-1eff-4e92-b3cd-6335bd5b1030" />
 
 </div>
 
@@ -130,8 +130,7 @@
 #### 🔐 Kullanıcı Yönetimi ve Yetkilendirme
 
 - Authentication düzeyi (auth_level) tanımlandı:
-  - `auth_level = 1` → Admin kullanıcı
-  - Kullanıcı ekranında auth_level 0'dan 1'e çıkararak admin yapma özelliği eklendi
+  - `auth_level = 0` → Admin kullanıcı
 - Kullanıcı bilgileri listeleme özelliği geliştirildi
 - Kullanıcı giriş, şifre değiştirme ve hesap silme sayfası tasarlandı
 - Kullanıcıların çözdüğü sorular ve başarıları gösteriliyor

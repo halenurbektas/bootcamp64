@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { Users, BookOpenCheck, BarChart3, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';  // import eklendi
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useNavigate, Link } from 'react-router-dom';
 import { getUserCount } from "../firestore/users.js";
 
 const StatCard = ({ title, value, icon, color }) => (
@@ -16,9 +17,28 @@ const StatCard = ({ title, value, icon, color }) => (
   </div>
 );
 
+// Tooltip için tarih formatlamaya artık gerek kalmadı, çünkü x ekseninde tarih yok.
+// Eğer ihtiyacınız olursa diye tutabilirsiniz.
+const formatDate = (timestamp) => {
+  if (!timestamp) return '';
+  const date = new Date(timestamp.seconds * 1000);
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+};
+
 const Dashboard = ({ userData }) => {
   const [userCount, setUserCount] = useState(null);
-  const navigate = useNavigate();  // navigate hook
+  const navigate = useNavigate();
+
+  // userData?.pointHistory artık bir sayı dizisi, bunu grafik için uygun hale getiriyoruz
+  const processedData = userData?.pointHistory?.length > 0 ?
+    userData.pointHistory.map((points, index) => ({
+      // X ekseninde gösterilecek sıra numarasını ekliyoruz
+      index: index + 1,
+      // Y ekseninde gösterilecek puanı kullanıyoruz
+      points: points
+    })) :
+    // Veri yoksa veya boşsa varsayılan veriyi kullan
+    [{ index: 0, points: 0 }];
 
   useEffect(() => {
     const fetchUserCount = async () => {
@@ -46,9 +66,44 @@ const Dashboard = ({ userData }) => {
       {/* Hızlı İşlemler ve Grafik */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 bg-white dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm">
-          <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Performans Grafiği</h3>
-          <div className="h-64 bg-slate-100 dark:bg-slate-700/30 rounded-xl flex items-center justify-center">
-            <p className="text-slate-400 dark:text-slate-500">(Grafik burada gösterilecek)</p>
+          <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Puan Gelişim Grafiği</h3>
+          <div className="h-64">
+            {/* Sadece en az 2 veri noktası varsa grafiği göster */}
+            {processedData.length > 1 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={processedData} // Güncellenmiş veriyi kullanıyoruz
+                  margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" className="dark:stroke-slate-700" />
+                  {/* dataKey'i 'index' olarak değiştiriyoruz */}
+                  <XAxis dataKey="index" stroke="#94a3b8" />
+                  <YAxis stroke="#94a3b8" />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'rgba(30, 41, 59, 0.8)',
+                      border: '1px solid #475569',
+                      borderRadius: '8px'
+                    }}
+                    // labelFormatter'ı sadece sıra numarasını gösterecek şekilde düzenledim
+                    labelFormatter={(label) => `Sıra: ${label}`}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="points"
+                    stroke="#8b5cf6"
+                    strokeWidth={2}
+                    dot={{ stroke: '#8b5cf6', strokeWidth: 2, r: 4 }}
+                    activeDot={{ r: 6 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full bg-slate-100 dark:bg-slate-700/30 rounded-xl flex flex-col items-center justify-center">
+                <p className="text-slate-400 dark:text-slate-500 mb-2">Henüz yeterli puan geçmişiniz yok.</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500">İlk probleminizi çözerek başlayın!</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -64,12 +119,20 @@ const Dashboard = ({ userData }) => {
                 <span>Yeni Soru Ekle</span>
                 <ArrowRight size={20} />
               </button>
-              <a href="#" className="flex items-center justify-between p-4 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                <span>Gönderimleri İncele</span><ArrowRight size={20}/>
-              </a>
-              <a href="#" className="flex items-center justify-between p-4 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                <span>Kullanıcıları Yönet</span><ArrowRight size={20}/>
-              </a>
+              <Link
+                to="/gonderimler"
+                className="flex items-center justify-between p-4 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              >
+                <span>Gönderimleri İncele</span>
+                <ArrowRight size={20} />
+              </Link>
+              <Link
+                to="/kullanicilar"
+                className="flex items-center justify-between p-4 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              >
+                <span>Kullanıcıları Yönet</span>
+                <ArrowRight size={20} />
+              </Link>
             </div>
           </div>
         )}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
     LayoutDashboard, Puzzle, UserCircle, BarChart2, Users, Settings, LogOut, 
-    ChevronsLeft, ChevronsRight
+    ChevronsLeft, ChevronsRight, Trophy
 } from 'lucide-react';
 
 const Sidebar = ({ onLogout, authLevel }) => {
@@ -12,6 +12,7 @@ const Sidebar = ({ onLogout, authLevel }) => {
     { name: 'Ana Panel', icon: <LayoutDashboard size={20} />, path: '/' },
     { name: 'Problemler', icon: <Puzzle size={20} />, path: '/problemler' },
     { name: 'Profil', icon: <UserCircle size={20} />, path: '/profil' },
+    { name: 'Rozetler', icon: <Trophy size={20} />, path: '/rozetler' },
     { name: 'Analizler', icon: <BarChart2 size={20} />, path: '/analizler' },
     ...(authLevel === 0
       ? [{ name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' }]

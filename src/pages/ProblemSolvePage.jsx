@@ -52,11 +52,13 @@ const ProblemSolvePage = ({ userData }) => {
       setError('Problem bilgisi henüz yüklenmedi veya bulunamadı.');
       return;
     }
-
     const stepsArray = solutionText
       .split('\n')
       .map(step => step.trim())
       .filter(step => step.length > 0);
+
+
+    const problemPoints = isCorrect ? problem.point : 0;
 
     try {
       // Gemini API'ye gönder
@@ -74,6 +76,7 @@ const ProblemSolvePage = ({ userData }) => {
         steps: stepsArray,
         userID: userData.uid,
         geminiFeedback: geminiResult.feedback, // Gemini'nin geri bildirimi
+
       });
 
       setIsSubmitted(true);
