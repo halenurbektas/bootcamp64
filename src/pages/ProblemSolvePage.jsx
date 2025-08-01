@@ -4,6 +4,10 @@ import { ChevronLeft, CheckCircle, Lightbulb, Send } from 'lucide-react';
 import { getAllProblems } from '../firestore/problems.js';
 import { submitAnswer } from '../firestore/submissions.js'; 
 import { evaluateSolutionWithGemini } from '../utils/geminiApi.js';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 const ProblemSolvePage = ({ userData }) => {
   const { problemId } = useParams();
@@ -14,7 +18,8 @@ const ProblemSolvePage = ({ userData }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false); 
   const [error, setError] = useState('');
-  const [geminiFeedback, setGeminiFeedback] = useState(''); 
+  const [geminiScore, setGeminiScore] = useState(null);
+  const [geminiAdvice, setGeminiAdvice] = useState('');
 
   useEffect(() => {
     const fetchProblem = async () => {
@@ -23,7 +28,6 @@ const ProblemSolvePage = ({ userData }) => {
         const found = problems.find(p => p.uid === problemId);
         setProblem(found || null);
       } catch (error) {
-        console.error('Problem yüklenirken hata:', error);
         setProblem(null);
       } finally {
         setLoading(false);
@@ -34,7 +38,8 @@ const ProblemSolvePage = ({ userData }) => {
 
   const handleSubmitSolution = async () => {
     setError('');
-    setGeminiFeedback(''); // Her gönderimde geri bildirimi temizle
+    setGeminiScore(null);
+    setGeminiAdvice('');
 
     if (solutionText.trim() === '') {
       setError('Lütfen çözüm adımlarını yazmadan göndermeye çalışmayın!');
@@ -52,16 +57,13 @@ const ProblemSolvePage = ({ userData }) => {
       setError('Problem bilgisi henüz yüklenmedi veya bulunamadı.');
       return;
     }
+
     const stepsArray = solutionText
       .split('\n')
       .map(step => step.trim())
       .filter(step => step.length > 0);
 
-
-    const problemPoints = isCorrect ? problem.point : 0;
-
     try {
-      // Gemini API'ye gönder
       const geminiResult = await evaluateSolutionWithGemini(
         problem,
         stepsArray,
@@ -69,23 +71,22 @@ const ProblemSolvePage = ({ userData }) => {
       );
 
       await submitAnswer({
-        answer: answer.trim(), // Kullanıcının girdiği cevap
-        isCorrect: geminiResult.isCorrect, // Gemini'nin kararı
+        answer: answer.trim(),
+        isCorrect: geminiResult.isCorrect,
         problemId: problem.uid,
-        score: geminiResult.score, // Gemini'nin verdiği puan
+        score: geminiResult.score,
         steps: stepsArray,
         userID: userData.uid,
-        geminiFeedback: geminiResult.feedback, // Gemini'nin geri bildirimi
-
+        geminiAdvice: geminiResult.advice,
       });
 
       setIsSubmitted(true);
       setIsCorrect(geminiResult.isCorrect); 
-      setGeminiFeedback(geminiResult.feedback);
+      setGeminiScore(geminiResult.score);
+      setGeminiAdvice(geminiResult.advice);
 
     } catch (err) {
       setError('Çözüm gönderilirken hata oluştu: ' + err.message);
-      console.error('Çözüm gönderme hatası:', err);
     }
   };
 
@@ -117,7 +118,14 @@ const ProblemSolvePage = ({ userData }) => {
               <p className="text-sm text-slate-500 dark:text-slate-400">Puan</p>
             </div>
           </div>
-          <p className="mt-4 text-slate-600 dark:text-slate-300">{problem.content}</p>
+
+          <div className="mt-4 text-slate-600 dark:text-slate-300 prose prose-indigo dark:prose-invert max-w-none">
+            <ReactMarkdown
+              children={problem.content}
+              remarkPlugins={[remarkMath]}
+              rehypePlugins={[rehypeKatex]}
+            />
+          </div>
         </div>
 
         {error && (
@@ -130,23 +138,36 @@ const ProblemSolvePage = ({ userData }) => {
           <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Çözümün</h2>
 
           {isSubmitted ? (
-            <div className={`p-4 rounded-lg text-center ${isCorrect ? 'bg-green-100 dark:bg-green-500/20 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-700 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-300'}`}>
-              <h3 className="font-bold">{isCorrect ? 'Çözümün Doğru! 🎉' : 'Çözümün Yanlış. 😕'}</h3>
-              <p className="text-sm">{isCorrect ? 'Tebrikler, doğru çözdün!' : 'Tekrar deneyebilir veya çözüm adımlarını kontrol edebilirsin.'}</p>
-              {geminiFeedback && (
-                <div className={`mt-4 p-3 rounded-lg text-left ${isCorrect ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-200' : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-200'}`}>
-                  <p className="font-semibold">Gemini'den Geri Bildirim:</p>
-                  <p className="text-sm">{geminiFeedback}</p>
+            <>
+              <div className={`p-4 rounded-lg text-center ${isCorrect ? 'bg-green-100 dark:bg-green-500/20 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-700 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-300'}`}>
+                <h3 className="font-bold">{isCorrect ? 'Çözümün Doğru! 🎉' : 'Çözümün Yanlış. 😕'}</h3>
+                <p className="text-sm">{isCorrect ? 'Tebrikler, doğru çözdün!' : 'Tekrar deneyebilir veya çözüm adımlarını kontrol edebilirsin.'}</p>
+
+                {geminiScore !== null && (
+                  <p className="mt-2 text-sm font-semibold">
+                    Puan: {geminiScore}/{problem.point}
+                  </p>
+                )}
+              </div>
+
+              {geminiAdvice && (
+                <div className="mt-6 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-500 dark:to-indigo-500">
+                    <Lightbulb size={18} className="text-yellow-300" />
+                    <h4 className="text-sm font-bold text-white tracking-wide">MathVerse Tavsiyesi</h4>
+                  </div>
+                  <div className="px-4 py-3 text-slate-700 dark:text-slate-200 text-sm leading-relaxed">
+                    {geminiAdvice}
+                  </div>
                 </div>
               )}
-            </div>
+            </>
           ) : (
             <>
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
                 Çözümünü adım adım, açıklayıcı bir dille yaz. Unutma, sadece sonuç değil, süreç de puanlamada önemli!
               </p>
 
-              {/* Çözüm Adımları */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Çözüm Adımları
@@ -161,7 +182,6 @@ const ProblemSolvePage = ({ userData }) => {
                 </div>
               </div>
 
-              {/* Cevap Alanı */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Final Cevabın
@@ -177,7 +197,6 @@ const ProblemSolvePage = ({ userData }) => {
                 </div>
               </div>
 
-              {/* Alt kısım butonlar */}
               <div className="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-slate-700/50">
                 <button className="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300">
                   <Lightbulb size={16} />

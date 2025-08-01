@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, ChevronDown, BrainCircuit, FileQuestion } from 'lucide-react';
+import { Search, ChevronDown, BrainCircuit, FileQuestion, PlusCircle } from 'lucide-react';
 import { getAllProblems } from '../firestore/problems.js';
+import { generateAndSaveMathProblem } from '../utils/generateMathProblem';
 
 const difficultyMap = {
   0: 'Çok Kolay',
@@ -19,7 +20,7 @@ const difficultyColors = {
   'çok zor': 'text-red-600 dark:text-red-500'
 };
 
-const ProblemsListPage = () => {
+const ProblemsListPage = ({ userData }) => {
   const [allProblems, setAllProblems] = useState([]);
   const [filteredProblems, setFilteredProblems] = useState([]);
   const [isDifficultyMenuOpen, setDifficultyMenuOpen] = useState(false);
@@ -27,15 +28,16 @@ const ProblemsListPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const difficultyMenuRef = useRef(null);
 
+  const fetchProblems = async () => {
+    try {
+      const problemsFromDb = await getAllProblems();
+      setAllProblems(problemsFromDb);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchProblems = async () => {
-      try {
-        const problemsFromDb = await getAllProblems();
-        setAllProblems(problemsFromDb);
-      } catch (error) {
-        console.error("Problemler yüklenirken hata:", error);
-      }
-    };
     fetchProblems();
   }, []);
 
@@ -72,39 +74,66 @@ const ProblemsListPage = () => {
     setDifficultyMenuOpen(false);
   };
 
+  const handleGenerateProblem = async () => {
+    try {
+      const result = await generateAndSaveMathProblem();
+      if (result.success) {
+        alert(`Yeni soru eklendi: "${result.title}" (${result.topic})`);
+        await fetchProblems();
+      } else {
+        alert("Soru eklenirken hata: " + result.error);
+      }
+    } catch (error) {
+      alert("Beklenmeyen hata: " + error.message);
+    }
+  };
+
   const noProblems = filteredProblems.length === 0;
 
   return (
     <div>
-      {/* Başlık ve filtre */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Matematik Problemleri</h1>
           <p className="text-slate-500 dark:text-slate-400">Yeteneklerini test et ve liderlik tablosunda yüksel!</p>
         </div>
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="relative w-full">
+
+        <div className="flex items-center gap-4 w-full md:w-auto ml-auto">
+          {userData?.authLevel === 0 && (
+            <button
+              onClick={handleGenerateProblem}
+              className="inline-flex items-center bg-green-600 px-4 py-2 rounded-lg text-white font-semibold hover:bg-green-700 transition-colors whitespace-nowrap"
+              title="Yeni matematik sorusu ekle"
+            >
+              <PlusCircle size={18} />
+              <span className="ml-1">Soru Ekle</span>
+            </button>
+          )}
+
+          <div className="relative w-60">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={20} />
-            <input 
-              type="text" 
-              placeholder="Problem ara..." 
+            <input
+              type="text"
+              placeholder="Problem ara..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-slate-100 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/50 rounded-lg pl-10 pr-4 py-2 text-slate-800 dark:text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
             />
           </div>
+
           <div className="relative" ref={difficultyMenuRef}>
-            <button 
+            <button
               onClick={() => setDifficultyMenuOpen(!isDifficultyMenuOpen)}
-              className="flex items-center gap-2 w-full justify-between bg-white dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/50 rounded-lg px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+              className="flex items-center gap-2 justify-between bg-white dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700/50 rounded-lg px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors whitespace-nowrap"
             >
               <span>{selectedDifficulty}</span>
               <ChevronDown size={16} />
             </button>
+
             {isDifficultyMenuOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-lg shadow-2xl border border-slate-200 dark:border-slate-700/50 overflow-hidden z-10 animate-fade-in-down">
-                {['Tümü', 'Çok Kolay', 'Kolay', 'Orta', 'Zor', 'Çok Zor'].map(difficulty => (
-                  <button 
+                {['Tümü', 'Çok Kolay', 'Kolay', 'Orta', 'Zor', 'Çok Zor'].map((difficulty) => (
+                  <button
                     key={difficulty}
                     onClick={() => handleDifficultyChange(difficulty)}
                     className="w-full text-left px-4 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"

@@ -77,7 +77,7 @@ function App() {
           <Route index element={<Dashboard user={user} userData={userData} />} />
           <Route path="profil" element={<Profile userData={userData} onLogout={() => signOut(auth)}/>} />
           <Route path="gonderimler" element={<SubmissionsPage userData={userData} />} />
-          <Route path="problemler" element={<ProblemsListPage problems={problems} />} />
+          <Route path="problemler" element={<ProblemsListPage problems={problems} userData={userData} />} />
           <Route path="problem/:problemId" element={<ProblemSolvePage problems={problems} userData={userData}/>} />
           <Route path="analizler" element={<AnalyticsPage userData={userData}/>} />
           <Route path="kullanicilar" element={<UsersPage />} />
