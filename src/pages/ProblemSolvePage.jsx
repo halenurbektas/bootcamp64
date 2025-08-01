@@ -43,26 +43,27 @@ const ProblemSolvePage = ({ userData }) => {  // userData prop olarak da alabili
       setError('Kullanıcı bilgisi bulunamadı, lütfen giriş yapınız.');
       return;
     }
-  
-    // solutionText stringini satırlara bölerek array yapıyoruz
+
     const stepsArray = solutionText
       .split('\n')
       .map(step => step.trim())
-      .filter(step => step.length > 0);  // boş satırları atıyoruz
+      .filter(step => step.length > 0);
   
-    // Kullanıcının cevabını problem cevabıyla karşılaştır
     const userAnswer = answer.trim().toLowerCase();
     const correctAnswer = problem.answer.trim().toLowerCase();
     const isCorrect = userAnswer === correctAnswer;
 
+    const problemPoints = isCorrect ? problem.point : 0;
+
     try {
       await submitAnswer({
-        answer: answer.trim(),      // Kullanıcının girdiği cevap
-        isCorrect: isCorrect,       // Problem cevabıyla karşılaştırma sonucu
+        answer: answer.trim(),
+        isCorrect: isCorrect,
         problemId: problem.uid,
-        score: isCorrect ? problem.point : 0,  // Doğruysa problem puanı, yanlışsa 0
-        steps: stepsArray,          // **Array olarak gönderiyoruz**
+        score: problemPoints,
+        steps: stepsArray,
         userID: userData.uid,
+        currentPoints: userData?.pointHistory?.length > 0 ? userData.pointHistory[userData.pointHistory.length - 1] : 0,
       });
       setIsSubmitted(true);
     } catch (err) {

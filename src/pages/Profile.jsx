@@ -30,7 +30,7 @@ const ActionButton = ({ icon, label, isDestructive = false }) => (
 
 const Profile = () => {
   // Paylaşılan state'leri ve fonksiyonları DashboardLayout'tan alıyoruz
-  const { bio, userData, onLogout } = useSharedState(); 
+  const { userData, onLogout } = useSharedState(); 
   
   const navigate = useNavigate();
   const { toggleTheme } = useTheme();
@@ -97,8 +97,7 @@ const Profile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Hakkında</h3>
-            {/* Biyografi artık paylaşılan state'ten geliyor */}
-            <p className="text-slate-600 dark:text-slate-300">{bio}</p>
+            <p className="text-slate-600 dark:text-slate-300">{userData.bio}</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Hesap Bilgileri</h3>
@@ -109,12 +108,12 @@ const Profile = () => {
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Hesap Oluşturma</p>
-                <p className="text-slate-700 dark:text-slate-300">{userData.metadata?.creationTime ? new Date(userData.metadata.creationTime).toLocaleDateString('tr-TR') : 'Bilinmiyor'}</p>
+                <p className="text-slate-700 dark:text-slate-300">{userData.joinedAt? new Date(userData.joinedAt.seconds * 1000 + userData.joinedAt.nanoseconds / 1000000).toLocaleDateString('tr-TR'): 'Bilinmiyor'}</p>
               </div>
-              <div>
+              {/* <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Son Giriş</p>
                 <p className="text-slate-700 dark:text-slate-300">{userData.metadata?.lastSignInTime ? new Date(userData.metadata.lastSignInTime).toLocaleDateString('tr-TR') : 'Bilinmiyor'}</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div>

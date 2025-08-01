@@ -70,7 +70,7 @@ const Header = ({ setSidebarOpen, userData, onLogout }) => {
                 <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700/50 text-slate-800 dark:text-white overflow-hidden animate-fade-in-down">
                     <div className="p-4 border-b border-slate-200 dark:border-slate-700/50">
                         <p className="font-bold">{(userData.name || 'Kullanıcı') + ' ' + (userData.surname || '')}</p>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">Puan: {userData.point}</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">Puan: {userData?.pointHistory?.length > 0 ? userData.pointHistory[userData.pointHistory.length - 1] : 0}</p>
                     </div>
                     <nav className="p-2">
                         <Link to="/profil" onClick={() => setProfileMenuOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"><UserCircle size={18}/> Profilim</Link>

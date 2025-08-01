@@ -50,12 +50,12 @@ const Auth = () => {
       await setDoc(doc(db, "users", user.uid), {
         authLevel: 1, // 0: admin, 1: standard user
         badges: [],
+        bio: "",
         email: registerEmail,
         joinedAt: serverTimestamp(),
         name: registerFirstName,
-        point: 0,
         solvedProblems: [],
-        streak: 0,
+        status: "Aktif",
         surname: registerLastName,
         uid: user.uid
       });
