@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { ChevronLeft, CheckCircle, Lightbulb, Send } from 'lucide-react';
 import { getAllProblems } from '../firestore/problems.js';
-import { submitAnswer } from '../firestore/submissions.js'; // import
+import { submitAnswer } from '../firestore/submissions.js'; 
+import { evaluateSolutionWithGemini } from '../utils/geminiApi.js';
 
-const ProblemSolvePage = ({ userData }) => {  // userData prop olarak da alabilirsin
+const ProblemSolvePage = ({ userData }) => {
   const { problemId } = useParams();
   const [problem, setProblem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [solutionText, setSolutionText] = useState('');
-  const [answer, setAnswer] = useState(''); // Yeni state: kullanıcının cevabı
+  const [answer, setAnswer] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false); 
   const [error, setError] = useState('');
+  const [geminiFeedback, setGeminiFeedback] = useState(''); 
 
   useEffect(() => {
     const fetchProblem = async () => {
@@ -31,6 +34,8 @@ const ProblemSolvePage = ({ userData }) => {  // userData prop olarak da alabili
 
   const handleSubmitSolution = async () => {
     setError('');
+    setGeminiFeedback(''); // Her gönderimde geri bildirimi temizle
+
     if (solutionText.trim() === '') {
       setError('Lütfen çözüm adımlarını yazmadan göndermeye çalışmayın!');
       return;
@@ -43,31 +48,44 @@ const ProblemSolvePage = ({ userData }) => {  // userData prop olarak da alabili
       setError('Kullanıcı bilgisi bulunamadı, lütfen giriş yapınız.');
       return;
     }
-
+    if (!problem) {
+      setError('Problem bilgisi henüz yüklenmedi veya bulunamadı.');
+      return;
+    }
     const stepsArray = solutionText
       .split('\n')
       .map(step => step.trim())
       .filter(step => step.length > 0);
-  
-    const userAnswer = answer.trim().toLowerCase();
-    const correctAnswer = problem.answer.trim().toLowerCase();
-    const isCorrect = userAnswer === correctAnswer;
+
 
     const problemPoints = isCorrect ? problem.point : 0;
 
     try {
+      // Gemini API'ye gönder
+      const geminiResult = await evaluateSolutionWithGemini(
+        problem,
+        stepsArray,
+        answer.trim()
+      );
+
       await submitAnswer({
-        answer: answer.trim(),
-        isCorrect: isCorrect,
+        answer: answer.trim(), // Kullanıcının girdiği cevap
+        isCorrect: geminiResult.isCorrect, // Gemini'nin kararı
         problemId: problem.uid,
-        score: problemPoints,
+        score: geminiResult.score, // Gemini'nin verdiği puan
         steps: stepsArray,
         userID: userData.uid,
-        currentPoints: userData?.pointHistory?.length > 0 ? userData.pointHistory[userData.pointHistory.length - 1] : 0,
+        geminiFeedback: geminiResult.feedback, // Gemini'nin geri bildirimi
+
       });
+
       setIsSubmitted(true);
+      setIsCorrect(geminiResult.isCorrect); 
+      setGeminiFeedback(geminiResult.feedback);
+
     } catch (err) {
       setError('Çözüm gönderilirken hata oluştu: ' + err.message);
+      console.error('Çözüm gönderme hatası:', err);
     }
   };
 
@@ -112,16 +130,22 @@ const ProblemSolvePage = ({ userData }) => {  // userData prop olarak da alabili
           <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Çözümün</h2>
 
           {isSubmitted ? (
-            <div className="bg-green-100 dark:bg-green-500/20 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-300 p-4 rounded-lg text-center">
-              <h3 className="font-bold">Çözümün Başarıyla Gönderildi!</h3>
-              <p className="text-sm">Değerlendirme sonuçları için bildirimlerini kontrol et.</p>
+            <div className={`p-4 rounded-lg text-center ${isCorrect ? 'bg-green-100 dark:bg-green-500/20 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-700 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-300'}`}>
+              <h3 className="font-bold">{isCorrect ? 'Çözümün Doğru! 🎉' : 'Çözümün Yanlış. 😕'}</h3>
+              <p className="text-sm">{isCorrect ? 'Tebrikler, doğru çözdün!' : 'Tekrar deneyebilir veya çözüm adımlarını kontrol edebilirsin.'}</p>
+              {geminiFeedback && (
+                <div className={`mt-4 p-3 rounded-lg text-left ${isCorrect ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-200' : 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-200'}`}>
+                  <p className="font-semibold">Gemini'den Geri Bildirim:</p>
+                  <p className="text-sm">{geminiFeedback}</p>
+                </div>
+              )}
             </div>
           ) : (
             <>
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
                 Çözümünü adım adım, açıklayıcı bir dille yaz. Unutma, sadece sonuç değil, süreç de puanlamada önemli!
               </p>
-              
+
               {/* Çözüm Adımları */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
