@@ -1,3 +1,5 @@
+// src/components/Sidebar.jsx
+
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
@@ -14,9 +16,7 @@ const Sidebar = ({ onLogout, authLevel }) => {
     { name: 'Profil', icon: <UserCircle size={20} />, path: '/profil' },
     { name: 'Rozetler', icon: <Trophy size={20} />, path: '/rozetler' },
     { name: 'Analizler', icon: <BarChart2 size={20} />, path: '/analizler' },
-    ...(authLevel === 0
-      ? [{ name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' }]
-      : []),
+    ...(authLevel === 0 ? [{ name: 'Kullanıcılar', icon: <Users size={20} />, path: '/kullanicilar' }] : []),
     { name: 'Ayarlar', icon: <Settings size={20} />, path: '/ayarlar' },
   ];
 
@@ -26,11 +26,15 @@ const Sidebar = ({ onLogout, authLevel }) => {
                  flex flex-col transition-all duration-300 ease-in-out
                  ${isExpanded ? 'w-60' : 'w-20'}`}
     >
-      <div className={`flex items-center p-4 h-16 border-b border-slate-200 dark:border-slate-800 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
+      <div className={`relative flex items-center p-4 h-16 border-b border-slate-200 dark:border-slate-800 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
         <span className={`font-bold tracking-wider text-slate-800 dark:text-white transition-opacity duration-200 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
           MathVerse
         </span>
-        <button onClick={() => setIsExpanded(!isExpanded)} className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <button 
+          onClick={() => setIsExpanded(!isExpanded)} 
+          className={`p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800
+                      ${!isExpanded && 'absolute right-2 top-1/2 -translate-y-1/2'}`}
+        >
             {isExpanded ? <ChevronsLeft size={20}/> : <ChevronsRight size={20}/>}
         </button>
       </div>
